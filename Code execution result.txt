@@ -1,0 +1,193 @@
+<div class="mb-12"><h3 class="text-3xl font-serif text-hana-gold mb-6 border-b border-gray-200 pb-2 capitalize">injectables</h3><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer" onclick="router.navigate('service', 'botox')">
+            <div class="h-48 bg-gray-200 overflow-hidden relative">
+                <img src="https://source.unsplash.com/featured/?Botox,beauty" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Botox Cosmetics">
+                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
+            </div>
+            <div class="p-6">
+                <h4 class="font-bold text-xl text-hana-dark mb-2">Botox Cosmetics</h4>
+                <p class="text-gray-600 text-sm mb-4">Smooth fine lines and wrinkles with the world's #1 neurotoxin.</p>
+                <span class="text-hana-teal font-bold text-sm uppercase tracking-wider group-hover:underline">Learn More &rarr;</span>
+            </div>
+        </div>
+        
+        <div class="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer" onclick="router.navigate('service', 'xeomin')">
+            <div class="h-48 bg-gray-200 overflow-hidden relative">
+                <img src="https://source.unsplash.com/featured/?Xeomin,beauty" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Xeomin">
+                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
+            </div>
+            <div class="p-6">
+                <h4 class="font-bold text-xl text-hana-dark mb-2">Xeomin</h4>
+                <p class="text-gray-600 text-sm mb-4">A uniquely purified choice for frown lines.</p>
+                <span class="text-hana-teal font-bold text-sm uppercase tracking-wider group-hover:underline">Learn More &rarr;</span>
+            </div>
+        </div>
+        
+        <div class="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer" onclick="router.navigate('service', 'kybella')">
+            <div class="h-48 bg-gray-200 overflow-hidden relative">
+                <img src="https://source.unsplash.com/featured/?Kybella,beauty" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Kybella">
+                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
+            </div>
+            <div class="p-6">
+                <h4 class="font-bold text-xl text-hana-dark mb-2">Kybella</h4>
+                <p class="text-gray-600 text-sm mb-4">The only FDA-approved injectable for double chin reduction.</p>
+                <span class="text-hana-teal font-bold text-sm uppercase tracking-wider group-hover:underline">Learn More &rarr;</span>
+            </div>
+        </div>
+        
+        <div class="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer" onclick="router.navigate('service', 'juvederm')">
+            <div class="h-48 bg-gray-200 overflow-hidden relative">
+                <img src="https://source.unsplash.com/featured/?Juvederm,beauty" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Juvederm Collection">
+                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
+            </div>
+            <div class="p-6">
+                <h4 class="font-bold text-xl text-hana-dark mb-2">Juvederm Collection</h4>
+                <p class="text-gray-600 text-sm mb-4">Volume and hydration for cheeks, lips, and lines.</p>
+                <span class="text-hana-teal font-bold text-sm uppercase tracking-wider group-hover:underline">Learn More &rarr;</span>
+            </div>
+        </div>
+        
+        <div class="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer" onclick="router.navigate('service', 'restylane')">
+            <div class="h-48 bg-gray-200 overflow-hidden relative">
+                <img src="https://source.unsplash.com/featured/?Restylane,beauty" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Restylane Collection">
+                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
+            </div>
+            <div class="p-6">
+                <h4 class="font-bold text-xl text-hana-dark mb-2">Restylane Collection</h4>
+                <p class="text-gray-600 text-sm mb-4">Refine and define facial contours naturally.</p>
+                <span class="text-hana-teal font-bold text-sm uppercase tracking-wider group-hover:underline">Learn More &rarr;</span>
+            </div>
+        </div>
+        
+        <div class="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer" onclick="router.navigate('service', 'radiesse')">
+            <div class="h-48 bg-gray-200 overflow-hidden relative">
+                <img src="https://source.unsplash.com/featured/?Radiesse,beauty" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Radiesse">
+                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
+            </div>
+            <div class="p-6">
+                <h4 class="font-bold text-xl text-hana-dark mb-2">Radiesse</h4>
+                <p class="text-gray-600 text-sm mb-4">Stimulate your own collagen for long-lasting volume.</p>
+                <span class="text-hana-teal font-bold text-sm uppercase tracking-wider group-hover:underline">Learn More &rarr;</span>
+            </div>
+        </div>
+        
+        <div class="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer" onclick="router.navigate('service', 'sculptra')">
+            <div class="h-48 bg-gray-200 overflow-hidden relative">
+                <img src="https://source.unsplash.com/featured/?Sculptra,beauty" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Sculptra">
+                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
+            </div>
+            <div class="p-6">
+                <h4 class="font-bold text-xl text-hana-dark mb-2">Sculptra</h4>
+                <p class="text-gray-600 text-sm mb-4">Activate your skin's natural power to revitalize collagen.</p>
+                <span class="text-hana-teal font-bold text-sm uppercase tracking-wider group-hover:underline">Learn More &rarr;</span>
+            </div>
+        </div>
+        
+        <div class="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer" onclick="router.navigate('service', 'versa')">
+            <div class="h-48 bg-gray-200 overflow-hidden relative">
+                <img src="https://source.unsplash.com/featured/?Revanesse,beauty" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Revanesse Versa">
+                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
+            </div>
+            <div class="p-6">
+                <h4 class="font-bold text-xl text-hana-dark mb-2">Revanesse Versa</h4>
+                <p class="text-gray-600 text-sm mb-4">High-quality hyaluronic acid for balance and smoothness.</p>
+                <span class="text-hana-teal font-bold text-sm uppercase tracking-wider group-hover:underline">Learn More &rarr;</span>
+            </div>
+        </div>
+        </div></div><div class="mb-12"><h3 class="text-3xl font-serif text-hana-gold mb-6 border-b border-gray-200 pb-2 capitalize">skin</h3><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer" onclick="router.navigate('service', 'facials')">
+            <div class="h-48 bg-gray-200 overflow-hidden relative">
+                <img src="https://source.unsplash.com/featured/?Facials,beauty" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Facials">
+                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
+            </div>
+            <div class="p-6">
+                <h4 class="font-bold text-xl text-hana-dark mb-2">Facials</h4>
+                <p class="text-gray-600 text-sm mb-4">Customized medical-grade facials for radiant skin.</p>
+                <span class="text-hana-teal font-bold text-sm uppercase tracking-wider group-hover:underline">Learn More &rarr;</span>
+            </div>
+        </div>
+        
+        <div class="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer" onclick="router.navigate('service', 'microneedling')">
+            <div class="h-48 bg-gray-200 overflow-hidden relative">
+                <img src="https://source.unsplash.com/featured/?Microneedling,beauty" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Microneedling RF">
+                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
+            </div>
+            <div class="p-6">
+                <h4 class="font-bold text-xl text-hana-dark mb-2">Microneedling RF</h4>
+                <p class="text-gray-600 text-sm mb-4">Radiofrequency technology for deep skin remodeling.</p>
+                <span class="text-hana-teal font-bold text-sm uppercase tracking-wider group-hover:underline">Learn More &rarr;</span>
+            </div>
+        </div>
+        
+        <div class="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer" onclick="router.navigate('service', 'pdo')">
+            <div class="h-48 bg-gray-200 overflow-hidden relative">
+                <img src="https://source.unsplash.com/featured/?PDO,beauty" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="PDO Threads">
+                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
+            </div>
+            <div class="p-6">
+                <h4 class="font-bold text-xl text-hana-dark mb-2">PDO Threads</h4>
+                <p class="text-gray-600 text-sm mb-4">Non-surgical lifting and tightening.</p>
+                <span class="text-hana-teal font-bold text-sm uppercase tracking-wider group-hover:underline">Learn More &rarr;</span>
+            </div>
+        </div>
+        
+        <div class="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer" onclick="router.navigate('service', 'meso')">
+            <div class="h-48 bg-gray-200 overflow-hidden relative">
+                <img src="https://source.unsplash.com/featured/?Mesotherapy,beauty" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Mesotherapy">
+                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
+            </div>
+            <div class="p-6">
+                <h4 class="font-bold text-xl text-hana-dark mb-2">Mesotherapy</h4>
+                <p class="text-gray-600 text-sm mb-4">Medi-inject targeted vitamin and enzyme infusion.</p>
+                <span class="text-hana-teal font-bold text-sm uppercase tracking-wider group-hover:underline">Learn More &rarr;</span>
+            </div>
+        </div>
+        </div></div><div class="mb-12"><h3 class="text-3xl font-serif text-hana-gold mb-6 border-b border-gray-200 pb-2 capitalize">specialized</h3><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer" onclick="router.navigate('service', 'prp')">
+            <div class="h-48 bg-gray-200 overflow-hidden relative">
+                <img src="https://source.unsplash.com/featured/?PRP,beauty" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="PRP Therapy">
+                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
+            </div>
+            <div class="p-6">
+                <h4 class="font-bold text-xl text-hana-dark mb-2">PRP Therapy</h4>
+                <p class="text-gray-600 text-sm mb-4">Platelet-Rich Plasma for rejuvenation and healing.</p>
+                <span class="text-hana-teal font-bold text-sm uppercase tracking-wider group-hover:underline">Learn More &rarr;</span>
+            </div>
+        </div>
+        
+        <div class="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer" onclick="router.navigate('service', 'hair')">
+            <div class="h-48 bg-gray-200 overflow-hidden relative">
+                <img src="https://source.unsplash.com/featured/?Hair,beauty" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Hair Loss Treatments">
+                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
+            </div>
+            <div class="p-6">
+                <h4 class="font-bold text-xl text-hana-dark mb-2">Hair Loss Treatments</h4>
+                <p class="text-gray-600 text-sm mb-4">Restore density and confidence.</p>
+                <span class="text-hana-teal font-bold text-sm uppercase tracking-wider group-hover:underline">Learn More &rarr;</span>
+            </div>
+        </div>
+        
+        <div class="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer" onclick="router.navigate('service', 'body')">
+            <div class="h-48 bg-gray-200 overflow-hidden relative">
+                <img src="https://source.unsplash.com/featured/?Body,beauty" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Body Contouring">
+                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
+            </div>
+            <div class="p-6">
+                <h4 class="font-bold text-xl text-hana-dark mb-2">Body Contouring</h4>
+                <p class="text-gray-600 text-sm mb-4">Sculpt your ideal silhouette.</p>
+                <span class="text-hana-teal font-bold text-sm uppercase tracking-wider group-hover:underline">Learn More &rarr;</span>
+            </div>
+        </div>
+        
+        <div class="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer" onclick="router.navigate('service', 'weight')">
+            <div class="h-48 bg-gray-200 overflow-hidden relative">
+                <img src="https://source.unsplash.com/featured/?Weight,beauty" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Weight Loss Programs">
+                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
+            </div>
+            <div class="p-6">
+                <h4 class="font-bold text-xl text-hana-dark mb-2">Weight Loss Programs</h4>
+                <p class="text-gray-600 text-sm mb-4">Medically supervised paths to a healthier you.</p>
+                <span class="text-hana-teal font-bold text-sm uppercase tracking-wider group-hover:underline">Learn More &rarr;</span>
+            </div>
+        </div>
+        </div></div>

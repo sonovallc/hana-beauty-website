@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hana Beauty Medspa | Premier Aesthetics in Westminster, CA</title>
+    <meta name="description" content="Premier medical aesthetics spa in Westminster, CA offering Botox, Juvederm, Microneedling, and Anti-aging treatments. 20+ years of experience.">
+    
+    <!-- Fonts: Playfair Display (Luxury) & Lato (Clean) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- GSAP Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+
+    <!-- Tailwind Config & Custom Styles -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        hana: {
+                            gold: '#D4AF37',     /* Luxury Gold */
+                            rose: '#FDF2F2',     /* Soft Rose Background */
+                            dark: '#1A202C',     /* Deep Slate */
+                            teal: '#4A726B',     /* Medical/Calm Teal */
+                            accent: '#C5A059'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Lato"', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'gradient-lux': 'linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* --- CUSTOM AESTHETICS --- */
+        body {
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            background-color: #FAFAFA;
+        }
+        
+        /* Glassmorphism */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.90);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        /* Text Gradients */
+        .text-gradient-gold {
+            background: linear-gradient(to right, #D4AF37, #F3E5AB, #D4AF37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: shine 5s linear infinite;
+        }
+
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        /* Mobile Phone Visibility Logic */
+        /* Desktop: Show Span (Text), Hide Anchor */
+        @media (min-width: 768px) {
+            .phone-mobile { display: none !important; }
+            .phone-desktop { display: inline-block !important; }
+        }
+        /* Mobile: Show Anchor (Link), Hide Span */
+        @media (max-width: 767px) {
+            .phone-mobile { display: inline-block !important; }
+            .phone-desktop { display: none !important; }
+        }
+
+        /* Hero Parallax */
+        .hero-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* Utilities */
+        .text-shadow { text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        
+        /* Loader */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: white;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-700 antialiased">
+
+    <!-- PRELOADER -->
+    <div id="loader">
+        <div class="text-center">
+            <h1 class="font-serif text-5xl text-hana-dark tracking-widest mb-4">HANA BEAUTY</h1>
+            <p class="text-hana-gold tracking-[0.3em] text-sm uppercase animate-pulse">Medspa • Wellness • Aesthetics</p>
+        </div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
+        <!-- Top Bar (Desktop Only) -->
+        <div class="bg-hana-dark text-white text-xs py-2 hidden md:block">
+            <div class="container mx-auto px-6 flex justify-between items-center">
+                <div class="tracking-wide"><i class="fas fa-map-marker-alt mr-2 text-hana-gold"></i>9039 Bolsa Ave, Suite 204 & 205, Westminster, CA</div>
+                <div class="flex space-x-6">
+                    <span class="phone-desktop"><i class="fas fa-phone-alt mr-2 text-hana-gold"></i>714-383-1337</span>
+                    <a href="mailto:info@hanabeautymedspa.com" class="hover:text-hana-gold transition"><i class="fas fa-envelope mr-2 text-hana-gold"></i>info@hanabeautymedspa.com</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Nav -->
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" onclick="app.router('home')" class="z-50 group">
+                <div class="font-serif text-2xl md:text-3xl font-bold text-gray-800 tracking-wide group-hover:opacity-80 transition">
+                    HANA <span class="text-hana-teal">BEAUTY</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden lg:flex items-center space-x-8">
+                <a href="#" onclick="app.router('home')" class="text-sm uppercase tracking-widest hover:text-hana-gold transition font-medium">Home</a>
+                <a href="#" onclick="app.router('about')" class="text-sm uppercase tracking-widest hover:text-hana-gold transition font-medium">About</a>
+                
+                <!-- Services Dropdown -->
+                <div class="relative group py-4">
+                    <button class="text-sm uppercase tracking-widest hover:text-hana-gold transition font-medium flex items-center">
+                        Services <i class="fas fa-chevron-down ml-1 text-[10px]"></i>
+                    </button>
+                    <div class="absolute top-full left-0 w-64 bg-white shadow-2xl rounded-b-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 border-t-4 border-hana-gold">
+                        <div class="py-3">
+                            <div class="px-6 py-2 text-[10px] font-bold text-gray-400 uppercase tracking-widest">Injectables</div>
+                            <a href="#" onclick="app.router('service', 'botox')" class="block px-6 py-2 text-sm hover:bg-hana-rose hover:text-hana-teal transition">Botox & Xeomin</a>
+                            <a href="#" onclick="app.router('service', 'juvederm')" class="block px-6 py-2 text-sm hover:bg-hana-rose hover:text-hana-teal transition">Dermal Fillers</a>
+                            
+                            <div class="px-6 py-2 text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-2">Skin</div>
+                            <a href="#" onclick="app.router('service', 'facials')" class="block px-6 py-2 text-sm hover:bg-hana-rose hover:text-hana-teal transition">Facials & RF</a>
+                            <a href="#" onclick="app.router('service', 'pdo')" class="block px-6 py-2 text-sm hover:bg-hana-rose hover:text-hana-teal transition">PDO Threads</a>
+
+                            <div class="px-6 py-2 text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-2">Body</div>
+                            <a href="#" onclick="app.router('service', 'body')" class="block px-6 py-2 text-sm hover:bg-hana-rose hover:text-hana-teal transition">Body Contouring</a>
+                            <a href="#" onclick="app.router('service', 'weight')" class="block px-6 py-2 text-sm hover:bg-hana-rose hover:text-hana-teal transition">Weight Loss</a>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#" onclick="app.router('contact')" class="bg-hana-gold text-white px-8 py-3 rounded-full text-sm font-bold shadow-lg hover:bg-yellow-600 hover:shadow-xl transition transform hover:-translate-y-0.5">
+                    Book Now
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger -->
+            <button class="lg:hidden z-50 text-hana-dark focus:outline-none p-2" onclick="app.toggleMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 bg-white z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center space-y-8">
+            <a href="#" onclick="app.router('home'); app.toggleMenu()" class="text-3xl font-serif text-hana-dark">Home</a>
+            <a href="#" onclick="app.router('about'); app.toggleMenu()" class="text-3xl font-serif text-hana-dark">About Us</a>
+            <a href="#" onclick="app.router('services'); app.toggleMenu()" class="text-3xl font-serif text-hana-dark">Treatments</a>
+            <a href="#" onclick="app.router('contact'); app.toggleMenu()" class="text-3xl font-serif text-hana-teal font-bold">Book Appointment</a>
+            <div class="flex flex-col items-center space-y-6 mt-12 pt-12 border-t w-1/2 border-gray-200">
+                <a href="tel:7143831337" class="phone-mobile text-xl text-hana-gold font-bold"><i class="fas fa-phone mr-2"></i>Call Us</a>
+                <a href="sms:7143831337" class="phone-mobile text-xl text-hana-gold font-bold"><i class="fas fa-comment mr-2"></i>Text Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main id="app-root" class="min-h-screen">
+        <!-- Content Injected via JavaScript -->
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-hana-dark text-white py-20 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-hana-gold via-yellow-200 to-hana-gold"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <!-- Brand -->
+                <div>
+                    <h3 class="font-serif text-3xl mb-6 text-white">Hana Beauty</h3>
+                    <p class="text-gray-400 leading-relaxed mb-6">
+                        Premier medical aesthetics spa with 20+ years of combined experience. We combine science and artistry to reveal your natural radiance.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-hana-gold transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-hana-gold transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-hana-gold transition"><i class="fab fa-yelp"></i></a>
+                    </div>
+                </div>
+
+                <!-- Treatments -->
+                <div>
+                    <h4 class="text-hana-gold font-bold uppercase tracking-widest text-sm mb-6">Treatments</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li><a href="#" onclick="app.router('service', 'botox')" class="hover:text-white transition">Botox & Xeomin</a></li>
+                        <li><a href="#" onclick="app.router('service', 'juvederm')" class="hover:text-white transition">Dermal Fillers</a></li>
+                        <li><a href="#" onclick="app.router('service', 'microneedling')" class="hover:text-white transition">Microneedling RF</a></li>
+                        <li><a href="#" onclick="app.router('service', 'pdo')" class="hover:text-white transition">PDO Thread Lift</a></li>
+                        <li><a href="#" onclick="app.router('service', 'body')" class="hover:text-white transition">Body Contouring</a></li>
+                        <li><a href="#" onclick="app.router('service', 'weight')" class="hover:text-white transition">Weight Loss</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-hana-gold font-bold uppercase tracking-widest text-sm mb-6">Contact</h4>
+                    <ul class="space-y-4 text-gray-400 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-hana-gold"></i>
+                            <span>9039 Bolsa Ave, Suite 204 & 205<br>Westminster, CA 92683</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mt-1 mr-3 text-hana-gold"></i>
+                            <div class="flex flex-col">
+                                <!-- Desktop -->
+                                <span class="phone-desktop">714-383-1337</span>
+                                <!-- Mobile -->
+                                <a href="tel:7143831337" class="phone-mobile underline decoration-hana-gold">Call: 714-383-1337</a>
+                                <a href="sms:7143831337" class="phone-mobile text-xs mt-1 text-hana-gold">Text Us</a>
+                            </div>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mt-1 mr-3 text-hana-gold"></i>
+                            <a href="mailto:info@hanabeautymedspa.com" class="hover:text-white">info@hanabeautymedspa.com</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Hours -->
+                <div>
+                    <h4 class="text-hana-gold font-bold uppercase tracking-widest text-sm mb-6">Hours</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li class="flex justify-between border-b border-gray-800 pb-2"><span>Mon - Fri</span> <span>9:00 AM - 6:00 PM</span></li>
+                        <li class="flex justify-between border-b border-gray-800 pb-2"><span>Saturday</span> <span>9:00 AM - 5:00 PM</span></li>
+                        <li class="flex justify-between pb-2"><span>Sunday</span> <span class="text-hana-gold">Closed</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-16 pt-8 text-center text-gray-600 text-xs tracking-wider">
+                &copy; 2025 Hana Beauty Medspa. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT APPLICATION -->
+    <script>
+        // --- DATA: CONTENT MANAGEMENT SYSTEM ---
+        const db = {
+            services: {
+                // Injectables
+                botox: { category: "Injectables", name: "Botox & Xeomin", desc: "Smooth fine lines and wrinkles with the world's most trusted neuromodulators.", img: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=2070&auto=format&fit=crop" },
+                xeomin: { category: "Injectables", name: "Xeomin", desc: "A uniquely purified choice for frown lines without unnecessary proteins.", img: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?q=80&w=2070&auto=format&fit=crop" },
+                kybella: { category: "Injectables", name: "Kybella", desc: "The only FDA-approved injectable for permanent double chin reduction.", img: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=2070&auto=format&fit=crop" },
+                juvederm: { category: "Injectables", name: "Juvederm Collection", desc: "Volume and hydration for cheeks, lips, and smile lines.", img: "https://images.unsplash.com/photo-1606907585048-2f0c9f7696c5?q=80&w=2070&auto=format&fit=crop" },
+                restylane: { category: "Injectables", name: "Restylane Collection", desc: "Refine and define facial contours with natural-looking results.", img: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=1887&auto=format&fit=crop" },
+                radiesse: { category: "Injectables", name: "Radiesse", desc: "Stimulate your own collagen for long-lasting volume and lift.", img: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=2070&auto=format&fit=crop" },
+                sculptra: { category: "Injectables", name: "Sculptra", desc: "Activate your skin's natural power to revitalize collagen production.", img: "https://images.unsplash.com/photo-1609543703812-5d150c55152f?q=80&w=2070&auto=format&fit=crop" },
+                versa: { category: "Injectables", name: "Revanesse Versa", desc: "High-quality hyaluronic acid filler for balance and smoothness.", img: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2068&auto=format&fit=crop" },
+                
+                // Skin
+                facials: { category: "Skin", name: "Custom Facials", desc: "Medical-grade treatments tailored to your unique skin profile.", img: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=2070&auto=format&fit=crop" },
+                microneedling: { category: "Skin", name: "Microneedling RF", desc: "Advanced radiofrequency technology for deep skin remodeling and scarring.", img: "https://images.unsplash.com/photo-1617897903246-719242758050?q=80&w=1887&auto=format&fit=crop" },
+                pdo: { category: "Skin", name: "PDO Thread Lift", desc: "Non-surgical lifting and tightening for an instant youthful look.", img: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=2069&auto=format&fit=crop" },
+                meso: { category: "Skin", name: "Mesotherapy", desc: "Targeted infusion of vitamins, enzymes, and extracts for rejuvenation.", img: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=2070&auto=format&fit=crop" },
+                
+                // Specialized
+                prp: { category: "Specialized", name: "PRP Therapy", desc: "Platelet-Rich Plasma therapy for hair restoration and skin healing.", img: "https://images.unsplash.com/photo-1625602797828-0c85b571a016?q=80&w=2070&auto=format&fit=crop" },
+                hair: { category: "Specialized", name: "Hair Loss Treatment", desc: "Restore density and confidence with our multi-modal approach.", img: "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=2074&auto=format&fit=crop" },
+                body: { category: "Specialized", name: "Body Contouring", desc: "Sculpt your ideal silhouette with non-invasive fat reduction.", img: "https://images.unsplash.com/photo-1519823551278-64ac92734fb1?q=80&w=2070&auto=format&fit=crop" },
+                weight: { category: "Specialized", name: "Weight Loss", desc: "Medically supervised programs to help you reach your health goals.", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop" },
+            }
+        };
+
+        // --- APP CONTROLLER ---
+        const app = {
+            root: document.getElementById('app-root'),
+            menuOpen: false,
+
+            init: function() {
+                // Simulate load
+                setTimeout(() => {
+                    document.getElementById('loader').style.opacity = 0;
+                    setTimeout(() => {
+                        document.getElementById('loader').style.display = 'none';
+                        this.router('home');
+                    }, 500);
+                }, 1200);
+            },
+
+            toggleMenu: function() {
+                this.menuOpen = !this.menuOpen;
+                const menu = document.getElementById('mobile-menu');
+                if (this.menuOpen) {
+                    menu.classList.remove('translate-x-full');
+                } else {
+                    menu.classList.add('translate-x-full');
+                }
+            },
+
+            router: function(route, id = null) {
+                window.scrollTo(0, 0);
+                
+                // Close menu if open
+                if (this.menuOpen) this.toggleMenu();
+
+                let html = '';
+                switch(route) {
+                    case 'home': html = pages.home(); break;
+                    case 'about': html = pages.about(); break;
+                    case 'services': html = pages.services(); break;
+                    case 'contact': html = pages.contact(); break;
+                    case 'service': html = pages.serviceDetail(id); break;
+                    default: html = pages.home();
+                }
+                
+                this.root.innerHTML = html;
+                this.animations();
+            },
+
+            animations: function() {
+                gsap.registerPlugin(ScrollTrigger);
+                
+                // Fade Up Elements
+                gsap.utils.toArray('.gsap-fade').forEach(el => {
+                    gsap.from(el, {
+                        scrollTrigger: { trigger: el, start: "top 85%" },
+                        y: 40, opacity: 0, duration: 0.8, ease: "power3.out"
+                    });
+                });
+
+                // Staggered Lists
+                gsap.utils.toArray('.gsap-stagger').forEach(el => {
+                    gsap.from(el.children, {
+                        scrollTrigger: { trigger: el, start: "top 80%" },
+                        y: 30, opacity: 0, duration: 0.6, stagger: 0.1, ease: "power2.out"
+                    });
+                });
+
+                // Counters
+                const counters = document.querySelectorAll('.counter');
+                if(counters.length > 0) {
+                    counters.forEach(counter => {
+                        let target = +counter.innerText;
+                        gsap.to(counter, {
+                            scrollTrigger: { trigger: counter, start: "top 80%" },
+                            innerText: target,
+                            duration: 2,
+                            snap: { innerText: 1 },
+                            ease: "power1.inOut"
+                        });
+                    });
+                }
+            }
+        };
+
+        // --- PAGES ---
+        const pages = {
+            home: () => `
+                <!-- HERO -->
+                <div class="relative h-screen flex items-center justify-center overflow-hidden hero-bg" style="background-image: url('https://images.unsplash.com/photo-1552693673-1bf958298935?q=80&w=2073&auto=format&fit=crop');">
+                    <div class="absolute inset-0 bg-gradient-to-r from-white/90 via-white/40 to-transparent"></div>
+                    <div class="container mx-auto px-6 relative z-10 pt-20">
+                        <div class="md:w-2/3 lg:w-1/2">
+                            <span class="block text-hana-teal font-bold tracking-[0.2em] uppercase mb-4 animate-[fadeIn_1s_ease-out]">Westminster's Premier Medspa</span>
+                            <h1 class="font-serif text-5xl md:text-7xl text-hana-dark font-bold leading-[1.1] mb-6 animate-[slideIn_1s_ease-out]">
+                                Reveal Your <br><span class="text-gradient-gold">Inner Radiance</span>
+                            </h1>
+                            <p class="text-xl text-gray-600 mb-10 leading-relaxed max-w-lg animate-[fadeIn_1.5s_ease-out]">
+                                Experience the pinnacle of medical aesthetics. 20+ years of expertise combining science, safety, and artistry.
+                            </p>
+                            <div class="flex flex-col sm:flex-row gap-4 animate-[fadeIn_2s_ease-out]">
+                                <button onclick="app.router('contact')" class="bg-hana-gold text-white px-10 py-4 rounded-full font-bold shadow-xl hover:bg-yellow-600 transition transform hover:scale-105">
+                                    Book Consultation
+                                </button>
+                                <button onclick="app.router('services')" class="bg-white text-hana-dark border border-hana-dark px-10 py-4 rounded-full font-bold shadow-lg hover:bg-hana-rose transition">
+                                    View Treatments
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STATS -->
+                <div class="bg-hana-dark text-white py-16 relative z-20 -mt-8 shadow-2xl mx-4 md:mx-12 rounded-xl">
+                    <div class="container mx-auto px-6">
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                            <div>
+                                <div class="text-4xl font-serif text-hana-gold mb-2"><span class="counter">20</span>+</div>
+                                <div class="text-xs uppercase tracking-widest opacity-70">Years Experience</div>
+                            </div>
+                            <div>
+                                <div class="text-4xl font-serif text-hana-gold mb-2"><span class="counter">10000</span>+</div>
+                                <div class="text-xs uppercase tracking-widest opacity-70">Happy Clients</div>
+                            </div>
+                            <div>
+                                <div class="text-4xl font-serif text-hana-gold mb-2"><span class="counter">15</span>+</div>
+                                <div class="text-xs uppercase tracking-widest opacity-70">Experts</div>
+                            </div>
+                            <div>
+                                <div class="text-4xl font-serif text-hana-gold mb-2">5.0</div>
+                                <div class="text-xs uppercase tracking-widest opacity-70">Star Rating</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INTRODUCTION -->
+                <section class="py-24 bg-hana-rose/30">
+                    <div class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-16">
+                        <div class="md:w-1/2 relative gsap-fade">
+                            <div class="absolute -top-4 -left-4 w-24 h-24 bg-hana-gold/20 rounded-full blur-xl"></div>
+                            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop" class="rounded-2xl shadow-2xl relative z-10">
+                        </div>
+                        <div class="md:w-1/2 gsap-fade">
+                            <h4 class="text-hana-teal font-bold uppercase tracking-widest mb-4">Welcome to Hana Beauty</h4>
+                            <h2 class="font-serif text-4xl md:text-5xl text-hana-dark mb-6 leading-tight">Where Science Meets <span class="italic text-hana-gold">Artistry</span></h2>
+                            <p class="text-gray-600 mb-6 leading-relaxed text-lg">
+                                We believe that beauty is not about changing who you are, but revealing the most confident version of yourself. Located in Westminster, CA, our luxury facility offers the most advanced non-surgical treatments available today.
+                            </p>
+                            <ul class="space-y-4 mb-8">
+                                <li class="flex items-center"><i class="fas fa-check-circle text-hana-teal mr-3 text-xl"></i><span>Doctor-Supervised Procedures</span></li>
+                                <li class="flex items-center"><i class="fas fa-check-circle text-hana-teal mr-3 text-xl"></i><span>FDA-Approved Products Only</span></li>
+                                <li class="flex items-center"><i class="fas fa-check-circle text-hana-teal mr-3 text-xl"></i><span>Customized Treatment Plans</span></li>
+                            </ul>
+                            <button onclick="app.router('about')" class="text-hana-dark font-bold border-b-2 border-hana-gold pb-1 hover:text-hana-gold transition">Learn Our Story</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FEATURED SERVICES -->
+                <section class="py-24 bg-white">
+                    <div class="container mx-auto px-6">
+                        <div class="text-center max-w-2xl mx-auto mb-16 gsap-fade">
+                            <h2 class="font-serif text-4xl text-hana-dark mb-4">Curated Treatments</h2>
+                            <div class="w-20 h-1 bg-hana-gold mx-auto mb-6"></div>
+                            <p class="text-gray-500">Our most popular services designed to rejuvenate and restore.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 gsap-stagger">
+                            <!-- Card 1 -->
+                            <div class="group relative h-[500px] overflow-hidden rounded-2xl cursor-pointer" onclick="app.router('service', 'botox')">
+                                <img src="https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?q=80&w=2070&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8">
+                                    <h3 class="text-white font-serif text-3xl mb-2">Injectables</h3>
+                                    <p class="text-gray-300 mb-6 opacity-0 group-hover:opacity-100 transition transform translate-y-4 group-hover:translate-y-0 duration-500">Botox, Fillers, & Kybella</p>
+                                    <span class="inline-block w-12 h-12 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white group-hover:bg-hana-gold transition"><i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                            <!-- Card 2 -->
+                            <div class="group relative h-[500px] overflow-hidden rounded-2xl cursor-pointer" onclick="app.router('service', 'facials')">
+                                <img src="https://images.unsplash.com/photo-1607779097040-26e80aa78e66?q=80&w=2070&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8">
+                                    <h3 class="text-white font-serif text-3xl mb-2">Skin Rejuvenation</h3>
+                                    <p class="text-gray-300 mb-6 opacity-0 group-hover:opacity-100 transition transform translate-y-4 group-hover:translate-y-0 duration-500">Microneedling RF & Threads</p>
+                                    <span class="inline-block w-12 h-12 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white group-hover:bg-hana-gold transition"><i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                            <!-- Card 3 -->
+                            <div class="group relative h-[500px] overflow-hidden rounded-2xl cursor-pointer" onclick="app.router('service', 'body')">
+                                <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?q=80&w=2070&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8">
+                                    <h3 class="text-white font-serif text-3xl mb-2">Body Wellness</h3>
+                                    <p class="text-gray-300 mb-6 opacity-0 group-hover:opacity-100 transition transform translate-y-4 group-hover:translate-y-0 duration-500">Contouring & Weight Loss</p>
+                                    <span class="inline-block w-12 h-12 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-white group-hover:bg-hana-gold transition"><i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-16">
+                            <button onclick="app.router('services')" class="inline-flex items-center font-bold text-hana-teal tracking-widest uppercase hover:text-hana-dark transition">
+                                View All Services <i class="fas fa-long-arrow-alt-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CTA -->
+                <section class="py-32 relative bg-fixed bg-center bg-cover" style="background-image: url('https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?q=80&w=2070&auto=format&fit=crop');">
+                    <div class="absolute inset-0 bg-hana-dark/60"></div>
+                    <div class="container mx-auto px-6 relative z-10 text-center text-white gsap-fade">
+                        <h2 class="font-serif text-5xl mb-6">Start Your Journey Today</h2>
+                        <p class="text-xl opacity-90 mb-10 max-w-2xl mx-auto font-light">
+                            Schedule your complimentary consultation and let our experts create a personalized plan just for you.
+                        </p>
+                        <button onclick="app.router('contact')" class="bg-white text-hana-dark px-12 py-5 rounded-full font-bold shadow-xl hover:bg-hana-gold hover:text-white transition transform hover:scale-105">
+                            Book Now
+                        </button>
+                    </div>
+                </section>
+            `,
+
+            about: () => `
+                <div class="pt-32 pb-24 bg-hana-rose/20">
+                    <div class="container mx-auto px-6 text-center mb-16">
+                        <span class="text-hana-teal uppercase tracking-widest font-bold text-sm mb-4 block gsap-fade">Our Philosophy</span>
+                        <h1 class="font-serif text-5xl text-hana-dark mb-6 gsap-fade">About Hana Beauty</h1>
+                        <div class="w-24 h-1 bg-hana-gold mx-auto gsap-fade"></div>
+                    </div>
+
+                    <div class="container mx-auto px-6">
+                        <div class="bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col lg:flex-row gsap-fade">
+                            <div class="lg:w-1/2 relative min-h-[400px]">
+                                <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2068&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover">
+                            </div>
+                            <div class="lg:w-1/2 p-12 md:p-20 flex flex-col justify-center">
+                                <h3 class="font-serif text-3xl text-hana-dark mb-6">Excellence in Aesthetics</h3>
+                                <p class="text-gray-600 mb-6 leading-relaxed">
+                                    Located in the heart of Westminster, Hana Beauty Medspa was founded on a simple principle: to provide hospital-grade safety with spa-like luxury. With over 20 years of combined experience in the medical aesthetics industry, our team brings a wealth of knowledge and artistic precision to every treatment.
+                                </p>
+                                <p class="text-gray-600 mb-8 leading-relaxed">
+                                    We pride ourselves on building long-term relationships with our clients. We don't just treat; we educate, listen, and care. Your safety and satisfaction are our absolute highest priorities.
+                                </p>
+                                <div class="grid grid-cols-2 gap-6">
+                                    <div class="flex items-center">
+                                        <div class="w-12 h-12 bg-hana-rose rounded-full flex items-center justify-center text-hana-teal mr-4"><i class="fas fa-user-md"></i></div>
+                                        <span class="font-bold text-gray-800">Licensed Medical Staff</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-12 h-12 bg-hana-rose rounded-full flex items-center justify-center text-hana-teal mr-4"><i class="fas fa-gem"></i></div>
+                                        <span class="font-bold text-gray-800">Luxury Facility</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-12 h-12 bg-hana-rose rounded-full flex items-center justify-center text-hana-teal mr-4"><i class="fas fa-star"></i></div>
+                                        <span class="font-bold text-gray-800">5-Star Rated</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-12 h-12 bg-hana-rose rounded-full flex items-center justify-center text-hana-teal mr-4"><i class="fas fa-heart"></i></div>
+                                        <span class="font-bold text-gray-800">Patient-First Care</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `,
+
+            services: () => {
+                let html = `
+                <div class="pt-32 pb-24 bg-gray-50">
+                    <div class="container mx-auto px-6 text-center mb-20">
+                        <span class="text-hana-teal uppercase tracking-widest font-bold text-sm mb-4 block gsap-fade">Comprehensive Care</span>
+                        <h1 class="font-serif text-5xl text-hana-dark mb-6 gsap-fade">All Treatments</h1>
+                        <p class="text-gray-500 max-w-2xl mx-auto gsap-fade">Explore our full range of aesthetic services designed to help you look and feel your absolute best.</p>
+                    </div>
+                    <div class="container mx-auto px-6">
+                `;
+
+                // Group by category
+                const categories = {
+                    "Injectables": Object.values(db.services).filter(s => s.category === "Injectables"),
+                    "Skin Rejuvenation": Object.values(db.services).filter(s => s.category === "Skin"),
+                    "Specialized Treatments": Object.values(db.services).filter(s => s.category === "Specialized")
+                };
+
+                Object.entries(categories).forEach(([catName, items]) => {
+                    html += `
+                        <div class="mb-20 gsap-stagger">
+                            <div class="flex items-center mb-10">
+                                <h2 class="font-serif text-3xl text-hana-dark mr-6">${catName}</h2>
+                                <div class="flex-grow h-px bg-gray-200"></div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    `;
+                    
+                    items.forEach(item => {
+                        // find key by value
+                        const key = Object.keys(db.services).find(k => db.services[k] === item);
+                        html += `
+                            <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300 group cursor-pointer transform hover:-translate-y-2" onclick="app.router('service', '${key}')">
+                                <div class="h-56 overflow-hidden">
+                                    <img src="${item.img}" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="font-bold text-xl text-hana-dark mb-3 group-hover:text-hana-teal transition">${item.name}</h3>
+                                    <p class="text-gray-500 text-sm leading-relaxed mb-4">${item.desc}</p>
+                                    <span class="text-xs font-bold uppercase tracking-widest text-hana-gold group-hover:underline">View Details</span>
+                                </div>
+                            </div>
+                        `;
+                    });
+
+                    html += `</div></div>`;
+                });
+
+                html += `</div></div>`;
+                return html;
+            },
+
+            serviceDetail: (id) => {
+                const s = db.services[id];
+                return `
+                <!-- HEADER -->
+                <div class="relative h-[60vh] w-full">
+                    <img src="${s.img}" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
+                        <div class="text-center text-white px-6 gsap-fade">
+                            <span class="uppercase tracking-[0.3em] text-sm mb-4 block text-hana-gold">${s.category}</span>
+                            <h1 class="font-serif text-5xl md:text-7xl font-bold mb-8">${s.name}</h1>
+                            <button onclick="document.getElementById('details').scrollIntoView()" class="border border-white px-8 py-3 rounded-full hover:bg-white hover:text-black transition">Overview</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="details" class="container mx-auto px-6 py-24">
+                    <div class="flex flex-col lg:flex-row gap-16">
+                        <!-- Main Content -->
+                        <div class="lg:w-2/3 gsap-fade">
+                            <h2 class="font-serif text-3xl text-hana-dark mb-6">Treatment Overview</h2>
+                            <p class="text-gray-600 text-lg leading-relaxed mb-12">
+                                ${s.desc} At Hana Beauty Medspa, we utilize the latest techniques to ensure optimal results with minimal downtime. This treatment is designed to enhance your natural features and boost your confidence.
+                            </p>
+
+                            <h3 class="font-serif text-2xl text-hana-dark mb-6">Why Choose This?</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                                <div class="bg-gray-50 p-6 rounded-xl border border-gray-100">
+                                    <i class="fas fa-check text-hana-teal mb-3 text-xl"></i>
+                                    <h4 class="font-bold mb-2">Immediate Results</h4>
+                                    <p class="text-sm text-gray-500">See visible improvements quickly after your session.</p>
+                                </div>
+                                <div class="bg-gray-50 p-6 rounded-xl border border-gray-100">
+                                    <i class="fas fa-shield-alt text-hana-teal mb-3 text-xl"></i>
+                                    <h4 class="font-bold mb-2">Safe & Effective</h4>
+                                    <p class="text-sm text-gray-500">Performed by licensed professionals in a sterile environment.</p>
+                                </div>
+                                <div class="bg-gray-50 p-6 rounded-xl border border-gray-100">
+                                    <i class="fas fa-clock text-hana-teal mb-3 text-xl"></i>
+                                    <h4 class="font-bold mb-2">Minimal Downtime</h4>
+                                    <p class="text-sm text-gray-500">Return to your daily activities almost immediately.</p>
+                                </div>
+                                <div class="bg-gray-50 p-6 rounded-xl border border-gray-100">
+                                    <i class="fas fa-magic text-hana-teal mb-3 text-xl"></i>
+                                    <h4 class="font-bold mb-2">Long Lasting</h4>
+                                    <p class="text-sm text-gray-500">Enjoy your rejuvenated look for months to come.</p>
+                                </div>
+                            </div>
+
+                            <h3 class="font-serif text-2xl text-hana-dark mb-6">Frequently Asked Questions</h3>
+                            <div class="space-y-4">
+                                <details class="group bg-white border border-gray-200 rounded-lg cursor-pointer">
+                                    <summary class="flex justify-between items-center p-4 font-bold text-gray-800 list-none">
+                                        <span>Does it hurt?</span>
+                                        <span class="transition group-open:rotate-180"><i class="fas fa-chevron-down"></i></span>
+                                    </summary>
+                                    <div class="px-4 pb-4 text-gray-600">Most patients report minimal discomfort. We can apply a topical numbing cream to ensure your experience is pleasant.</div>
+                                </details>
+                                <details class="group bg-white border border-gray-200 rounded-lg cursor-pointer">
+                                    <summary class="flex justify-between items-center p-4 font-bold text-gray-800 list-none">
+                                        <span>How long does it take?</span>
+                                        <span class="transition group-open:rotate-180"><i class="fas fa-chevron-down"></i></span>
+                                    </summary>
+                                    <div class="px-4 pb-4 text-gray-600">Treatment times vary, but most sessions are completed within 30-60 minutes.</div>
+                                </details>
+                                <details class="group bg-white border border-gray-200 rounded-lg cursor-pointer">
+                                    <summary class="flex justify-between items-center p-4 font-bold text-gray-800 list-none">
+                                        <span>When will I see results?</span>
+                                        <span class="transition group-open:rotate-180"><i class="fas fa-chevron-down"></i></span>
+                                    </summary>
+                                    <div class="px-4 pb-4 text-gray-600">Some results are immediate, while others improve over the following weeks as collagen production increases.</div>
+                                </details>
+                            </div>
+                        </div>
+
+                        <!-- Sidebar -->
+                        <div class="lg:w-1/3 gsap-fade">
+                            <div class="bg-white shadow-xl p-8 rounded-2xl sticky top-32 border-t-4 border-hana-gold">
+                                <h3 class="font-serif text-2xl text-hana-dark mb-2">Ready to Glow?</h3>
+                                <p class="text-gray-500 text-sm mb-6">Book your ${s.name} appointment today.</p>
+                                
+                                <button onclick="app.router('contact')" class="w-full bg-hana-dark text-white py-4 rounded-lg font-bold hover:bg-hana-teal transition mb-4 shadow-lg">Schedule Consultation</button>
+                                
+                                <div class="text-center border-t border-gray-100 pt-4">
+                                    <p class="text-xs text-gray-400 uppercase tracking-widest mb-2">Or call us directly</p>
+                                    <!-- Desktop -->
+                                    <span class="phone-desktop text-xl font-serif font-bold text-hana-gold">714-383-1337</span>
+                                    <!-- Mobile -->
+                                    <div class="phone-mobile flex justify-center space-x-4">
+                                        <a href="tel:7143831337" class="w-12 h-12 bg-hana-rose text-hana-teal rounded-full flex items-center justify-center shadow"><i class="fas fa-phone"></i></a>
+                                        <a href="sms:7143831337" class="w-12 h-12 bg-hana-rose text-hana-teal rounded-full flex items-center justify-center shadow"><i class="fas fa-comment"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                `;
+            },
+
+            contact: () => `
+                <div class="pt-32 pb-24 bg-white">
+                    <div class="container mx-auto px-6">
+                        <div class="text-center mb-16 gsap-fade">
+                            <span class="text-hana-teal uppercase tracking-widest font-bold text-sm mb-4 block">Visit Us</span>
+                            <h1 class="font-serif text-5xl text-hana-dark mb-6">Get in Touch</h1>
+                            <p class="text-gray-600 max-w-xl mx-auto">We look forward to welcoming you to our Westminster facility. Schedule your appointment below.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                            <!-- Info -->
+                            <div class="space-y-8 gsap-fade">
+                                <div class="bg-hana-rose/30 p-8 rounded-2xl">
+                                    <h3 class="font-serif text-2xl mb-6 text-hana-dark">Contact Info</h3>
+                                    <div class="space-y-6">
+                                        <div class="flex items-start">
+                                            <div class="w-10"><i class="fas fa-map-marker-alt text-hana-gold text-xl"></i></div>
+                                            <div>
+                                                <h5 class="font-bold text-gray-800">Location</h5>
+                                                <p class="text-gray-600">9039 Bolsa Ave, Suite 204 & 205,<br>Westminster, CA 92683</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <div class="w-10"><i class="fas fa-phone text-hana-gold text-xl"></i></div>
+                                            <div>
+                                                <h5 class="font-bold text-gray-800">Phone</h5>
+                                                <span class="phone-desktop text-gray-600">714-383-1337</span>
+                                                <a href="tel:7143831337" class="phone-mobile text-hana-teal font-bold underline">714-383-1337</a>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <div class="w-10"><i class="fas fa-envelope text-hana-gold text-xl"></i></div>
+                                            <div>
+                                                <h5 class="font-bold text-gray-800">Email</h5>
+                                                <a href="mailto:info@hanabeautymedspa.com" class="text-gray-600 hover:text-hana-teal">info@hanabeautymedspa.com</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Map -->
+                                <div class="h-80 rounded-2xl overflow-hidden shadow-lg border-4 border-white">
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3316.957322629974!2d-117.9685569!3d33.7450825!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dd27d6e09b8f1f%3A0x1234567890abcdef!2s9039%20Bolsa%20Ave%2C%20Westminster%2C%20CA%2092683!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                                </div>
+                            </div>
+
+                            <!-- Form -->
+                            <div class="bg-white border border-gray-100 shadow-2xl rounded-2xl p-8 md:p-12 gsap-fade">
+                                <h3 class="font-serif text-2xl mb-8 text-hana-dark">Request Appointment</h3>
+                                <form onsubmit="event.preventDefault(); alert('Thank you! We have received your request and will contact you shortly to confirm.');" class="space-y-6">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div>
+                                            <label class="block text-xs font-bold uppercase text-gray-500 mb-2">First Name</label>
+                                            <input type="text" class="w-full bg-gray-50 border-b-2 border-gray-200 p-3 focus:outline-none focus:border-hana-gold transition" required>
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-bold uppercase text-gray-500 mb-2">Last Name</label>
+                                            <input type="text" class="w-full bg-gray-50 border-b-2 border-gray-200 p-3 focus:outline-none focus:border-hana-gold transition" required>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold uppercase text-gray-500 mb-2">Email Address</label>
+                                        <input type="email" class="w-full bg-gray-50 border-b-2 border-gray-200 p-3 focus:outline-none focus:border-hana-gold transition" required>
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold uppercase text-gray-500 mb-2">Phone Number</label>
+                                        <input type="tel" class="w-full bg-gray-50 border-b-2 border-gray-200 p-3 focus:outline-none focus:border-hana-gold transition" required>
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold uppercase text-gray-500 mb-2">Interested Service</label>
+                                        <select class="w-full bg-gray-50 border-b-2 border-gray-200 p-3 focus:outline-none focus:border-hana-gold transition">
+                                            <option>Botox / Injectables</option>
+                                            <option>Dermal Fillers</option>
+                                            <option>Microneedling / Facials</option>
+                                            <option>Body Contouring</option>
+                                            <option>Weight Loss</option>
+                                            <option>Other</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold uppercase text-gray-500 mb-2">Message</label>
+                                        <textarea class="w-full bg-gray-50 border-b-2 border-gray-200 p-3 focus:outline-none focus:border-hana-gold transition h-32"></textarea>
+                                    </div>
+                                    <button type="submit" class="w-full bg-hana-dark text-white font-bold py-4 rounded-full hover:bg-hana-teal transition shadow-lg transform hover:-translate-y-1">Submit Request</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `
+        };
+
+        // --- INIT ---
+        window.addEventListener('DOMContentLoaded', () => app.init());
+
+    </script>
+</body>
+</html>

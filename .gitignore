@@ -1,0 +1,18 @@
+﻿# OS Files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temp files
+*.tmp
+*.log
+
+# Don't commit instruction files
+*Instructions*.txt
+*Executable*.txt
+*Code_execution*.txt
